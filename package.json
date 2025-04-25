@@ -7,16 +7,19 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "13.x",
+    "next": ">=14.2.15",
     "react": "18.x",
     "react-dom": "18.x",
     "tailwindcss": "^3.0.0",
     "postcss": "^8.0.0",
     "autoprefixer": "^10.0.0",
-    "tonweb": "^1.3.0"
+    "tonweb": "^0.0.66"
   },
   "devDependencies": {
     "eslint": "8.x",
     "eslint-config-next": "13.x"
+  },
+  "engines": {
+    "node": ">=16.x"
   }
 }
