@@ -1,48 +1,48 @@
 import { useState } from 'react';
 
-export default function Home() {
-  const [language, setLanguage] = useState('ru');
+const Home = () => {
+  const [language, setLanguage] = useState('ru'); // Стейт для языка
 
-  const handleChangeLanguage = (e) => {
-    setLanguage(e.target.value);
-  };
-
-  const content = {
-    ru: {
-      title: 'EFHC - Энергия для человечества',
-      description:
-        'Добро пожаловать на сайт EFHC! Здесь вы найдете информацию о проекте, который помогает обеспечить устойчивое будущее с помощью возобновляемой энергии.',
-      buttonText: 'Узнать больше',
-    },
-    en: {
-      title: 'EFHC - Energy for Humanity',
-      description:
-        'Welcome to the EFHC website! Here you will find information about the project that helps ensure a sustainable future with renewable energy.',
-      buttonText: 'Learn More',
-    },
-    uk: {
-      title: 'EFHC - Енергія для людства',
-      description:
-        'Ласкаво просимо на сайт EFHC! Тут ви знайдете інформацію про проект, який допомагає забезпечити сталий розвиток за допомогою відновлювальної енергії.',
-      buttonText: 'Дізнатися більше',
-    },
+  const handleLanguageChange = (event) => {
+    setLanguage(event.target.value);
   };
 
   return (
     <div className="container">
-      <h1>{content[language].title}</h1>
-      <p>{content[language].description}</p>
+      <header>
+        <h1>{language === 'ru' ? 'EFHC - Энергия для человечества' : language === 'en' ? 'EFHC - Energy for Humanity' : 'EFHC - Енергія для людства'}</h1>
+        <p>
+          {language === 'ru'
+            ? 'Добро пожаловать на сайт EFHC! Здесь вы найдете информацию о проекте, который помогает обеспечить устойчивое будущее с помощью возобновляемой энергии.'
+            : language === 'en'
+            ? 'Welcome to the EFHC website! Here you will find information about the project that helps ensure a sustainable future with renewable energy.'
+            : 'Ласкаво просимо на сайт EFHC! Тут ви знайдете інформацію про проект, який допомагає забезпечити сталий розвиток за допомогою відновлювальної енергії.'}
+        </p>
+      </header>
+
       <div className="language-selector">
         <label htmlFor="language">Выберите язык:</label>
-        <select id="language" name="language" onChange={handleChangeLanguage} value={language}>
+        <select id="language" name="language" value={language} onChange={handleLanguageChange}>
           <option value="ru">Русский</option>
           <option value="en">English</option>
           <option value="uk">Українська</option>
         </select>
       </div>
-      <button onClick={() => window.location.href = 'https://efhc.com'}>
-        {content[language].buttonText}
-      </button>
+
+      <div className="actions">
+        <button onClick={() => window.location.href = 'https://efhc.com'}>{language === 'ru' ? 'Узнать больше' : language === 'en' ? 'Learn More' : 'Дізнатися більше'}</button>
+      </div>
+
+      <section>
+        <h2>{language === 'ru' ? 'Наши проекты' : language === 'en' ? 'Our Projects' : 'Наші проекти'}</h2>
+        <p>{language === 'ru' ? 'Мы работаем над проектами, которые обеспечат устойчивое развитие с помощью возобновляемой энергии.' : language === 'en' ? 'We are working on projects that will ensure sustainable development with renewable energy.' : 'Ми працюємо над проектами, які забезпечать сталий розвиток за допомогою відновлювальної енергії.'}</p>
+      </section>
+
+      <footer>
+        <p>{language === 'ru' ? 'EFHC - Энергия для будущего' : language === 'en' ? 'EFHC - Energy for the future' : 'EFHC - Енергія для майбутнього'}</p>
+      </footer>
     </div>
   );
-}
+};
+
+export default Home;
