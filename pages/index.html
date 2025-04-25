@@ -1,1 +1,48 @@
+import { useState } from 'react';
 
+export default function Home() {
+  const [language, setLanguage] = useState('ru');
+
+  const handleChangeLanguage = (e) => {
+    setLanguage(e.target.value);
+  };
+
+  const content = {
+    ru: {
+      title: 'EFHC - Энергия для человечества',
+      description:
+        'Добро пожаловать на сайт EFHC! Здесь вы найдете информацию о проекте, который помогает обеспечить устойчивое будущее с помощью возобновляемой энергии.',
+      buttonText: 'Узнать больше',
+    },
+    en: {
+      title: 'EFHC - Energy for Humanity',
+      description:
+        'Welcome to the EFHC website! Here you will find information about the project that helps ensure a sustainable future with renewable energy.',
+      buttonText: 'Learn More',
+    },
+    uk: {
+      title: 'EFHC - Енергія для людства',
+      description:
+        'Ласкаво просимо на сайт EFHC! Тут ви знайдете інформацію про проект, який допомагає забезпечити сталий розвиток за допомогою відновлювальної енергії.',
+      buttonText: 'Дізнатися більше',
+    },
+  };
+
+  return (
+    <div className="container">
+      <h1>{content[language].title}</h1>
+      <p>{content[language].description}</p>
+      <div className="language-selector">
+        <label htmlFor="language">Выберите язык:</label>
+        <select id="language" name="language" onChange={handleChangeLanguage} value={language}>
+          <option value="ru">Русский</option>
+          <option value="en">English</option>
+          <option value="uk">Українська</option>
+        </select>
+      </div>
+      <button onClick={() => window.location.href = 'https://efhc.com'}>
+        {content[language].buttonText}
+      </button>
+    </div>
+  );
+}
